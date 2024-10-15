@@ -1,0 +1,7 @@
+<div>
+  <p [class]="cpt % 2 == 0 ? even : odd">{{ cpt }}</p>
+  <div>
+    <button (click)="cptDown()">-</button>
+    <button (click)="cptUp()">+</button>
+  </div>
+</div>
