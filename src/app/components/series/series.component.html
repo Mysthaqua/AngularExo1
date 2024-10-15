@@ -1,0 +1,12 @@
+@if (series.length === 0) {
+<p>Aucune série trouvée</p>
+} @else {
+<ul>
+  @for (serie of series; track $index; let i = $index) {
+  <li>
+    <p>{{ i }}: {{ serie }}</p>
+    <button (click)="removeSerie(i)">Supprimer la série</button>
+  </li>
+  }
+</ul>
+}
