@@ -24,8 +24,8 @@ jobs:
           cd ..
           cd ..
           npm install -g @angular/cli
-          ng new AngularExo1 --defaults
-          cd AngularExo1
+          ng new AngularExoPage --defaults
+          cd AngularExoPage
           npm link angular-cli-ghpages
           ng add angular-cli-ghpages
         # run: |
