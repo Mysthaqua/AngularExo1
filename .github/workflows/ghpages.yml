@@ -41,5 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ls -l
+          cd ..
+          ls -l
           cd AngularExoPage
           ng deploy --repo=git@github.com:Mysthaqua/AngularExo1.git --name=Mysthaqua --email=mysthaqua@gmail.com --base-href=/AngularExo1/ --dir=dist/exo1/browser
