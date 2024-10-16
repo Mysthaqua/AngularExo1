@@ -22,6 +22,7 @@ jobs:
           cd dist
           npm link
           cd ..
+          cd ..
           npm install -g @angular/cli
           ng new AngularExo1 --defaults
           cd AngularExo1
