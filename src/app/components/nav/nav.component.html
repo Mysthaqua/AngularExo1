@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
   <ul>
     <li>
       <a routerLink="/counter">Counter</a>
@@ -7,4 +7,30 @@
       <a routerLink="/series">Series</a>
     </li>
   </ul>
+</nav>
+ -->
+
+<nav
+  class="block w-full max-w-screen-lg mx-auto text-white bg-white shadow-md rounded-md px-8 py-3 mt-10"
+>
+  <div
+    class="container flex flex-wrap items-center justify-between mx-auto text-slate-800"
+  >
+    <a
+      routerLink="/"
+      class="mr-4 block cursor-pointer py-1.5 text-base text-slate-800 font-semibold"
+    >
+      Exos Angular
+    </a>
+    <div class="block">
+      <ul class="flex mb-0 mt-0 flex-row items-center gap-6">
+        <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
+          <a routerLink="/counter" class="flex items-center"> Counter </a>
+        </li>
+        <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
+          <a routerLink="/series" class="flex items-center"> Series </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

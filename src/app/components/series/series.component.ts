@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { SortPipe } from '../../utils/pipes/sort.pipe';
+import { CapitalizeFirstLetterPipe } from '../../utils/pipes/capitalize-first-letter.pipe';
 
 @Component({
   selector: 'app-series',
   standalone: true,
-  imports: [SortPipe],
+  imports: [SortPipe, CapitalizeFirstLetterPipe],
   templateUrl: './series.component.html',
   styleUrl: './series.component.css',
 })
