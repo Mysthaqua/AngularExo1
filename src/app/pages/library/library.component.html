@@ -1,6 +1,6 @@
-<div class="container mx-auto w-fit">
+<div class="container mx-auto w-fit flex flex-col place-items-center">
   <div
-    class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200"
+    class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200 w-fit"
   >
     <nav class="flex min-w-[240px] flex-col gap-1 p-1.5">
       @for (book of books; track $index; let i = $index) {
@@ -33,5 +33,50 @@
       </div>
       }
     </nav>
+  </div>
+
+  <div
+    class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200 p-3 mt-5 w-fit"
+  >
+    <h4 class="block text-xl font-medium text-slate-800">Add a book</h4>
+    <form (ngSubmit)="addBook()" class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+      <div class="mb-1 flex flex-col gap-6">
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label for="title" class="block mb-2 text-sm text-slate-600">
+            Title
+          </label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            placeholder="Title"
+            [(ngModel)]="book.title"
+          />
+        </div>
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label for="author" class="block mb-2 text-sm text-slate-600">
+            Author
+          </label>
+          <input
+            id="author"
+            name="author"
+            type="text"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            placeholder="Author"
+            [(ngModel)]="book.author"
+          />
+        </div>
+        <div class="hidden w-full max-w-sm min-w-[200px]">
+          <input type="hidden" name="isRead" [(ngModel)]="book.isRead" />
+        </div>
+      </div>
+      <button
+        class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="submit"
+      >
+        Add
+      </button>
+    </form>
   </div>
 </div>
