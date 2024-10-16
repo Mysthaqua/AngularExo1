@@ -16,25 +16,25 @@ jobs:
           node-version: 20
 
       - name: Prepare
-        # run: |
-        #   cd src
-        #   npm install
-        #   npm run build
-        #   npm run test
-        #   cd dist
-        #   npm link
-        #   cd ..
-        #   cd ..
-        #   npm install -g @angular/cli
-        #   ng new your-angular-project --defaults
-        #   cd your-angular-project
-        #   npm link angular-cli-ghpages
-        #   ng add angular-cli-ghpages
         run: |
+          cd src
           npm install
           npm run build
+          npm run test
+          cd dist
+          npm link
+          cd ..
+          cd ..
           npm install -g @angular/cli
+          ng new your-angular-project --defaults
+          cd your-angular-project
+          npm link angular-cli-ghpages
           ng add angular-cli-ghpages
+        # run: |
+        #   npm install
+        #   npm run build
+        #   npm install -g @angular/cli
+        #   ng add angular-cli-ghpages
 
       - name: Deploy
         env:
