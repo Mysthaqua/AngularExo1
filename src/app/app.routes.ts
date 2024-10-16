@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { CounterComponent } from './components/counter/counter.component';
-import { SeriesComponent } from './components/series/series.component';
-import { LibraryComponent } from './components/library/library.component';
+import { CounterComponent } from './pages/counter/counter.component';
+import { SeriesComponent } from './pages/series/series.component';
+import { LibraryComponent } from './pages/library/library.component';
 
 export const routes: Routes = [
   {
