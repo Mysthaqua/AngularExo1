@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: dependencies
-        run: npm install;
+        run: npm install
       - name: build
         run: ng build --base-href "/AngularExo1/"
       - name: push-branch
