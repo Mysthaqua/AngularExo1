@@ -6,6 +6,8 @@ jobs:
   update-gh-pages-branch:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: dependencies
         run: npm install
       - name: build
