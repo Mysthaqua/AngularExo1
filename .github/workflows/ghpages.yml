@@ -10,6 +10,8 @@ jobs:
         uses: actions/checkout@v4
       - name: dependencies
         run: npm install
+      - name: angular
+        run: npm install -g @angular/cli angular-cli-ghpages
       - name: build
         run: ng build --base-href "/AngularExo1/"
       - name: push-branch
