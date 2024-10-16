@@ -17,12 +17,14 @@ jobs:
 
       - name: Prepare
         run: |
+          ls -l
           npm install
           npm run build
           cd dist
           npm link
           cd ..
           cd ..
+          ls -l
           npm install -g @angular/cli
           ng new AngularExoPage --defaults
           cd AngularExoPage
@@ -38,5 +40,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          ls -l
           cd AngularExoPage
           ng deploy --repo=git@github.com:Mysthaqua/AngularExo1.git --name=Mysthaqua --email=mysthaqua@gmail.com --base-href=/AngularExo1/ --dir=dist/exo1/browser
