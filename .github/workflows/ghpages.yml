@@ -1,0 +1,12 @@
+name: ghpages
+
+on: workflow_dispatch
+
+jobs:
+  update-gh-pages-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: ng build --base-href "/AngularExo1/"
+      - name: push-branch
+        run: npx angular-cli-ghpages --dir=dist/exo1/browser
