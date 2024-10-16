@@ -1,18 +1,42 @@
-name: ghpages
+name: Build
 
-on: workflow_dispatch
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  update-gh-pages-branch:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: dependencies
-        run: npm install
-      - name: angular
-        run: npm install -g @angular/cli angular-cli-ghpages
-      - name: build
-        run: ng build --base-href "/AngularExo1/"
-      - name: push-branch
-        run: npx angular-cli-ghpages --dir=dist/exo1/browser
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Prepare
+        # run: |
+        #   cd src
+        #   npm install
+        #   npm run build
+        #   npm run test
+        #   cd dist
+        #   npm link
+        #   cd ..
+        #   cd ..
+        #   npm install -g @angular/cli
+        #   ng new your-angular-project --defaults
+        #   cd your-angular-project
+        #   npm link angular-cli-ghpages
+        #   ng add angular-cli-ghpages
+        run: |
+          npm install
+          npm run build
+          npm install -g @angular/cli
+          ng add angular-cli-ghpages
+
+      - name: Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ng deploy --repo=git@github.com:Mysthaqua/AngularExo1.git --name=Mysthaqua --email=mysthaqua@gmail.com --base-href=/AngularExo1/ --dir=dist/exo1/browser
