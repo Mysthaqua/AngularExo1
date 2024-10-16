@@ -17,10 +17,9 @@ jobs:
 
       - name: Prepare
         run: |
-          cd src
           npm install
           npm run build
-          cd ../dist
+          cd dist
           npm link
           cd ..
           npm install -g @angular/cli
