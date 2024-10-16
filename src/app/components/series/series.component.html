@@ -1,11 +1,13 @@
 @if (series.length === 0) {
 <p>Aucune série trouvée</p>
 } @else {
+<button (click)="sortASC()">ASC</button>
+<button (click)="sortDESC()">DESC</button>
 <ul>
-  @for (serie of series; track $index; let i = $index) {
+  @for (serie of series | sort: order; track $index; let i = $index) {
   <li>
-    <p>{{ i }}: {{ serie }}</p>
-    <button (click)="removeSerie(i)">Supprimer la série</button>
+    <p class="inline">{{ i }}: {{ serie }}</p>
+    <button class="inline" (click)="removeSerie(i)">Supprimer la série</button>
   </li>
   }
 </ul>
