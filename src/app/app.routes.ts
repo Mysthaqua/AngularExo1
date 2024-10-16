@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { CounterComponent } from './components/counter/counter.component';
 import { SeriesComponent } from './components/series/series.component';
+import { LibraryComponent } from './components/library/library.component';
 
 export const routes: Routes = [
   {
@@ -10,5 +11,9 @@ export const routes: Routes = [
   {
     path: 'series',
     component: SeriesComponent,
+  },
+  {
+    path: 'library',
+    component: LibraryComponent,
   },
 ];
