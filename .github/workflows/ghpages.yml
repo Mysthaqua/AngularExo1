@@ -12,10 +12,10 @@ jobs:
       - name: angular process
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
         with:
-          github_access_token: ${{ secrets.GH_TOKEN }} #Token que j'ai genéré et mis dans mes secret de repo
-          build_configuration: production # dans angular.json c'est la valeur par default c'est peut-être pas la même pour tous
-          base_href: /AngularExo1/ # le nom de mon repo
-          angular_dist_build_folder: dist/exo1/browser # dist/[nom_du_projet]/browser
+          github_access_token: ${{ secrets.GH_TOKEN }}
+          build_configuration: production
+          base_href: /AngularExo1/
+          angular_dist_build_folder: dist/exo1/browser
 
 permissions:
-  contents: write # Au moment de faire le token il faut penser à lui autoriser l'ecriture des commit et du deployment
+  contents: write

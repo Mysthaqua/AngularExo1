@@ -1,0 +1,233 @@
+<div class="container mx-auto w-fit flex flex-col place-items-center">
+  <!-- <div
+    class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200 w-fit"
+  >
+    <nav class="flex min-w-[240px] flex-col gap-1 p-1.5">
+      @for (book of books; track $index; let i = $index) {
+      <div
+        role="button"
+        class="text-slate-800 flex w-full items-center rounded-md p-2 pl-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+      >
+        <div class="flex flex-col mr-10">
+          <span>{{ book.title | capitalizeFirstLetter }}</span>
+          <small>{{ book.author | capitalizeFirstLetter }}</small>
+        </div>
+        <div
+          class="grid place-items-center justify-self-end ml-auto justify-content-end"
+        >
+          <button
+            class="rounded-md border border-transparent p-2.5 text-center text-sm transition-all text-slate-600 hover:bg-slate-200 active:bg-slate-200 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"
+            (click)="toggleReadStatus(book)"
+          >
+            <div class="flex flex-col">
+              {{ book.isRead | emojiRead }}
+              <span>{{
+                book.isRead
+                  ? "I have read this book"
+                  : "I haven't read this book"
+              }}</span>
+            </div>
+          </button>
+        </div>
+      </div>
+      }
+    </nav>
+  </div> -->
+
+  <div
+    class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200 p-3 mt-5 w-fit"
+  >
+    <h4 class="block text-xl font-medium text-slate-800">Add a pokemon</h4>
+    <form
+      [formGroup]="pokemon_form"
+      (ngSubmit)="save_pokemon()"
+      class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+    >
+      <div class="mb-1 flex flex-col gap-6">
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label for="name" class="block mb-2 text-sm text-slate-600">
+            Name
+          </label>
+          <input
+            formControlName="name"
+            id="name"
+            type="text"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            placeholder="Name"
+          />
+        </div>
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label for="description" class="block mb-2 text-sm text-slate-600">
+            Description
+          </label>
+          <input
+            formControlName="description"
+            id="description"
+            type="text"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            placeholder="Description"
+          />
+        </div>
+        <fieldset formArrayName="types">
+          <div class="relative flex flex-col rounded-lg border p-3 mt-5 w-full">
+            <legend>Types</legend>
+            <div class="mb-1 mt-3 flex flex-col gap-3">
+              @for (type of types.controls; track type) {
+              <div class="w-full max-w-sm min-w-[200px]">
+                <label
+                  [for]="'type' + $index"
+                  class="block mb-2 text-sm text-slate-600"
+                >
+                  Type {{ $index + 1 }}
+                </label>
+                <input
+                  [formControlName]="$index"
+                  [id]="'type' + $index"
+                  type="text"
+                  class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  placeholder="Type"
+                />
+              </div>
+              }
+              <button
+                (click)="addType()"
+                type="button"
+                class="mt-4 w-fit place-self-center rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              >
+                Add a type
+              </button>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset formArrayName="attacks">
+          <div class="relative flex flex-col rounded-lg border p-3 mt-5 w-full">
+            <legend>Attacks</legend>
+            <div class="mb-1 mt-3 flex flex-col gap-3">
+              @for (attack of attacks.controls; track attack) {
+              <div
+                [formGroupName]="$index"
+                class="relative flex flex-col rounded-lg border p-3 mt-2 w-full"
+              >
+                <legend>Attack {{ $index + 1 }}</legend>
+
+                <div class="w-full max-w-sm min-w-[200px]">
+                  <label
+                    [for]="'attack-name-' + $index"
+                    class="block mb-2 text-sm text-slate-600"
+                  >
+                    Name
+                  </label>
+                  <input
+                    formControlName="name"
+                    [id]="'attack-name-' + $index"
+                    type="text"
+                    class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                    placeholder="Name"
+                  />
+                </div>
+                <div class="w-full max-w-sm min-w-[200px]">
+                  <label
+                    [for]="'attack-description-' + $index"
+                    class="block mb-2 text-sm text-slate-600"
+                  >
+                    Description
+                  </label>
+                  <input
+                    formControlName="description"
+                    [id]="'attack-description-' + $index"
+                    type="text"
+                    class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                    placeholder="Description"
+                  />
+                </div>
+                <div class="w-full max-w-sm min-w-[200px]">
+                  <label
+                    [for]="'attack-damages-' + $index"
+                    class="block mb-2 text-sm text-slate-600"
+                  >
+                    Damages
+                  </label>
+                  <input
+                    formControlName="damages"
+                    [id]="'attack-damages-' + $index"
+                    type="number"
+                    class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                    placeholder="Damages"
+                  />
+                </div>
+              </div>
+              }
+              <button
+                (click)="addAttack()"
+                type="button"
+                class="mt-4 w-fit place-self-center rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              >
+                Add an attack
+              </button>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset formArrayName="areas">
+          <div class="relative flex flex-col rounded-lg border p-3 mt-5 w-full">
+            <legend>Areas</legend>
+            <div class="mb-1 mt-3 flex flex-col gap-3">
+              @for (area of areas.controls; track area) {
+              <div
+                [formGroupName]="$index"
+                class="relative flex flex-col rounded-lg border p-3 mt-2 w-full"
+              >
+                <legend>Area {{ $index + 1 }}</legend>
+
+                <div class="w-full max-w-sm min-w-[200px]">
+                  <label
+                    [for]="'area-name-' + $index"
+                    class="block mb-2 text-sm text-slate-600"
+                  >
+                    Name
+                  </label>
+                  <input
+                    formControlName="name"
+                    [id]="'area-name-' + $index"
+                    type="text"
+                    class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                    placeholder="Name"
+                  />
+                </div>
+                <div class="w-full max-w-sm min-w-[200px]">
+                  <label
+                    [for]="'area-region-' + $index"
+                    class="block mb-2 text-sm text-slate-600"
+                  >
+                    Region
+                  </label>
+                  <input
+                    formControlName="region"
+                    [id]="'area-region-' + $index"
+                    type="text"
+                    class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                    placeholder="Region"
+                  />
+                </div>
+              </div>
+              }
+              <button
+                (click)="addArea()"
+                type="button"
+                class="mt-4 w-fit place-self-center rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              >
+                Add an area
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button
+        class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="submit"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+</div>
