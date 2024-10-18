@@ -7,11 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 import Pokemon from '../../utils/classes/Pokemon';
+import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card.component';
 
 @Component({
   selector: 'app-pokemons',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PokemonCardComponent],
   templateUrl: './pokemons.component.html',
   styleUrl: './pokemons.component.css',
 })
@@ -19,7 +20,26 @@ export class PokemonsComponent {
   pokemons: Pokemon[];
 
   constructor() {
-    this.pokemons = [];
+    this.pokemons = [
+      new Pokemon(
+        'Tibo',
+        'Il est pas très bo mdr',
+        ['normal', 'loser'],
+        [
+          {
+            name: 'coup de boule',
+            description: 'ça fait mal...',
+            damages: 1000000,
+          },
+          {
+            name: 'Flemme',
+            description: 'Aucun effet... Bizarre...',
+            damages: 1000000,
+          },
+        ],
+        [{ name: 'Chez moi', region: "C'est le nooooord" }]
+      ),
+    ];
   }
 
   pokemon_form: FormGroup = new FormGroup(
@@ -93,5 +113,9 @@ export class PokemonsComponent {
       this.pokemon_form.reset();
     }
     console.log(this.pokemons);
+  }
+
+  removePokemon(pokemon: Pokemon): void {
+    this.pokemons = this.pokemons.filter((p) => p !== pokemon);
   }
 }

@@ -1,0 +1,20 @@
+<!-- <div class="flex min-w-200">-->
+<div
+  class="flex wrap my-6 bg-white shadow-sm border border-slate-200 rounded-lg mx-auto"
+>
+  <div
+    class="relative h-56 m-2.5 overflow-hidden text-white rounded-md mx-auto"
+  >
+    <img [src]="randomImg" alt="card-image" />
+  </div>
+  <div class="p-4">
+    <h6 class="mb-2 text-slate-800 text-xl font-semibold">
+      {{ pokemon.name }}
+    </h6>
+    <p class="text-slate-600 leading-normal font-light">
+      {{ pokemon.description }}
+    </p>
+    <button (click)="removePokemon()">Remove the pokemon</button>
+  </div>
+</div>
+<!-- </div> -->
