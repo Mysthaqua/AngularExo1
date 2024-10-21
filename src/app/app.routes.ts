@@ -3,6 +3,7 @@ import { CounterComponent } from './pages/counter/counter.component';
 import { SeriesComponent } from './pages/series/series.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { PokemonsComponent } from './pages/pokemons/pokemons.component';
+import { FactsComponent } from './pages/facts/facts.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'pokemons',
     component: PokemonsComponent,
+  },
+  {
+    path: 'facts',
+    component: FactsComponent,
   },
 ];
